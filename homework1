@@ -1,35 +1,66 @@
-include <stdio.h>
-#include <locale.h>
+#include <stdio.h>
 
-#define N 10
-
-void Enter_Array(int Array[])
-{
-  setlocale(LC_ALL, "");
-  int num = N;
-  while (1)
-  {
-    if ((num > 1) && (num <= N)) break;
-    else printf("Неверный ввод!\n");
-  }
-  printf("Введи %d элементов массива: \n", N);
-  for (int i = 0; i < num; i++) scanf("%d", &Array[i]);
-  return Array;
-}
-
-void Sum_Array(int Array[])
-{
-  setlocale(LC_ALL, "");
-  int ost= 10, sum = 0;
-  for (int i = 0; i < ost; i++) sum = sum + Array[i];
-  printf("Сумма элементов массива: %d", sum);
-  return 0;
-}
+void Enter_Array();
+int Len_Array();
+void Palindrom_Check();
 
 int main()
+{	
+	char array[100] = { 0 };
+	Enter_Array(array);
+	int len = Len_Array(array);
+	Palindrom_Check(array, len);
+	return 0;
+}
+
+void Enter_Array(char array[])
 {
-  int Array[N];
-  Enter_Array(Array);
-  Sum_Array(Array);
-  return 0;
+	printf("Vvod stroki: ");
+	fgets(array, 100, stdin);
+	return array;
+}
+
+int Len_Array(char array[])
+{
+	int i = 0, len = 0;
+	for (i; i < 100; i++)
+	{
+		if (array[i] == 0)
+		{
+			break;
+		}
+		else
+		{
+			len++;
+		}
+	}
+	return len-1;
+}
+
+void Palindrom_Check(char array[], int len)
+{
+	char second_array[100] = { 0 };
+	int i = len - 1;
+	int j = 0, ind = 0, check = 0;
+	
+	for (i; i >= 0; i = i - 1)
+	{
+		second_array[j] = array[i];
+		j++;
+	}
+
+	for (ind; ind < len; ind++)
+	{
+		if (second_array[ind] != array[ind])
+		{
+			printf("Stroka ne palindrom\n");
+			check++;
+			break;
+		}
+	}
+	if (check == 0)
+	{
+		printf("Stroka palindrom\n");
+	}
+	return 0;
 }
