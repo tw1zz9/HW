@@ -1,0 +1,35 @@
+include <stdio.h>
+#include <locale.h>
+
+#define N 10
+
+void Enter_Array(int Array[])
+{
+  setlocale(LC_ALL, "");
+  int num = N;
+  while (1)
+  {
+    if ((num > 1) && (num <= N)) break;
+    else printf("Неверный ввод!\n");
+  }
+  printf("Введи %d элементов массива: \n", N);
+  for (int i = 0; i < num; i++) scanf("%d", &Array[i]);
+  return Array;
+}
+
+void Sum_Array(int Array[])
+{
+  setlocale(LC_ALL, "");
+  int ost= 10, sum = 0;
+  for (int i = 0; i < ost; i++) sum = sum + Array[i];
+  printf("Сумма элементов массива: %d", sum);
+  return 0;
+}
+
+int main()
+{
+  int Array[N];
+  Enter_Array(Array);
+  Sum_Array(Array);
+  return 0;
+}
